@@ -5,7 +5,7 @@ description: "Minimal file sharing service with simple links and no accounts to 
 min_os_version: "1.5.0"
 homepage: https://github.com/mtlynch/picoshare
 author: mtlynch
-license: AGPL-3.0
+license: AGPL-3.0-or-later
 permissions:
   required:
     - net.internet
