@@ -1,0 +1,12 @@
+params:
+  - id: access_secret
+    type: secret
+    name: Site access passphrase
+    description: "Shared passphrase for the whole site, at least 16 characters. Upstream has no accounts, so this is the only access control beyond the platform login."
+    default_value: "$random(len=24)"
+    optional: false
+locales:
+  zh:
+    access_secret:
+      name: 全站访问口令
+      description: 至少 16 位的共享口令。上游没有账号体系，这是懒猫入口之外唯一的访问控制。

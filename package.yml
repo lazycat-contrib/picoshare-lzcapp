@@ -1,0 +1,18 @@
+package: community.lazycat.app.picoshare
+name: PicoShare
+version: 1.5.4
+description: "Minimal file sharing service with simple links and no accounts to manage."
+min_os_version: "1.5.0"
+homepage: https://github.com/mtlynch/picoshare
+author: mtlynch
+license: AGPL-3.0
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: PicoShare
+    description: "极简文件分享：上传后得到直链，带全站访问口令，无需管理账号。"
+  en:
+    name: PicoShare
+    description: "Minimal file sharing service with simple links and no accounts to manage."

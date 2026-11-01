@@ -1,0 +1,40 @@
+application:
+  subdomain: picoshare
+  multi_instance: false
+  upstreams:
+    - location: /package-licenses/
+      backend: file:///lzcapp/pkg/content/licenses/
+    - location: /
+      backend: http://picoshare:4001/
+
+services:
+  picoshare:
+    # upstream: mtlynch/picoshare:v1.5.4
+    image: docker.1ms.run/mtlynch/picoshare:v1.5.4
+    environment:
+      - PORT=4001
+      # Whole-site shared passphrase. Upstream has no account system; this is the
+      # only thing standing between an open instance and the public internet.
+      - |-
+        PS_SHARED_SECRET={{ .U.access_secret | replace "\r" "" | replace "\n" "" }}
+      - TZ=Asia/Shanghai
+    command: -db /data/store.db
+    binds:
+      - /lzcapp/var/data:/data
+
+usage: |
+  PicoShare 是极简文件分享服务：上传文件拿到直链，发给别人即可下载。
+
+  使用方法：
+  1. 打开应用，输入部署参数里的访问口令进入。
+  2. 拖拽或选择文件上传，完成后会得到一条直接下载链接。
+  3. 需要限制下载次数或有效期时，在条目上设置即可。
+
+  数据与安全：
+  - 上传的文件和数据库都保存在 /lzcapp/var/data（SQLite），卸载应用会一并删除，请提前备份。
+  - 上游没有账号体系，全站靠一个共享口令保护。本包强制要求该口令并来自部署参数，缺失或过短就拒绝启动，避免出现人人可传的公开网盘。
+  - 应用经懒猫入口鉴权访问，未开放无需登录的接口路径。
+
+  说明：
+  - 删除文件不会立即释放磁盘空间（上游设计如此），需要定期清理数据目录下的孤立数据。
+  - 未做真机验证：访问口令、文件上传、直链下载、下载次数限制以及重启后持久化均未在设备上实测。
