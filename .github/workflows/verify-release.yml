@@ -97,7 +97,7 @@ jobs:
                   lic = [n for n in members if 'licenses/' in n]
                   assert lic, members
                   license_text = content.extractfile(lic[0]).read().decode()
-              assert 'GNU AFFERO GENERAL PUBLIC LICENSE' in license_text
+              assert 'GNU Affero General Public License' in license_text
 
           result = {
               'verified': True,
