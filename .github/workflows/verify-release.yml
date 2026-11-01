@@ -63,7 +63,7 @@ jobs:
               assert info['package'] == 'community.lazycat.app.picoshare'
               assert str(info['version']) == version
               assert info['name'] == 'PicoShare'
-              assert info['license'] == 'AGPL-3.0'
+              assert info['license'] == 'AGPL-3.0-or-later', info['license']
               assert str(info['min_os_version']) == '1.5.0'
 
               text = package.extractfile('manifest.yml').read().decode()
